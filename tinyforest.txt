@@ -1,0 +1,53 @@
+import mdptoolbox
+import mdptoolbox.example
+import os
+
+currentPath = os.getcwd()
+
+print(currentPath)
+
+os.chdir(currentPath)
+
+files = os.listdir(currentPath)
+print("Files in %r : %s" % (currentPath, files))
+
+P, R = mdptoolbox.example.forest()
+print(P)
+
+print(R)
+
+
+
+Policyiteration = mdptoolbox.mdp.PolicyIteration(P, R, 0.95)
+Policyiteration.run()
+
+print(Policyiteration)
+
+print(Policyiteration.V)
+print(Policyiteration.policy)
+
+value = mdptoolbox.mdp.ValueIteration(P, R, 0.95)
+value.run()
+
+print(value.policy)
+
+
+""" S3 에서 wait 의 reward 가 0.4 일 때의 value와 policy """
+
+P1, R1 = mdptoolbox.example.forest(3,0.4,2,0.1)
+
+Qlearning1 = mdptoolbox.mdp.QLearning(P1, R1 , 0.95)
+Qlearning1.run()
+
+print(Qlearning1.V)
+print(Qlearning1.policy)
+
+""" p가 0.8인 경우의 value와 policy """
+
+P2, R2 = mdptoolbox.example.forest(3,0.4,2,0.8)
+
+Qlearning2 = mdptoolbox.mdp.QLearning(P2, R2 , 0.95)
+Qlearning2.run()
+
+print(Qlearning2.V)
+print(Qlearning2.policy)
