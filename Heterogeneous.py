@@ -94,4 +94,4 @@ for n in range(nmax):
 print(gw)
 
 
-
+""" 진행을 어떻게 해아할 지 모르겠습니다 """
